@@ -32,6 +32,8 @@ public class BookProductEntity extends BaseEntity {
 	public BookProductEntity() {
 		super();
 	}
+	
+	
 
 	public BookProductEntity( String createdBy, String modifiedBy, Timestamp createdDateTime,
 			Timestamp modifiedDateTime,long productId, String productName, String name, String emailId, String mobileNo,
@@ -43,7 +45,7 @@ public class BookProductEntity extends BaseEntity {
 		this.name = name;
 		this.emailId = emailId;
 		this.mobileNo = mobileNo;
-		this.country = country;
+		this.country = country; 
 		this.state = state;
 		this.district = district;
 		this.pincode = pincode;

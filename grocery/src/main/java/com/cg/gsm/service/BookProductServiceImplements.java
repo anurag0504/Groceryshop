@@ -4,10 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
 import com.cg.gsm.entities.BookProductEntity;
-import com.cg.gsm.entities.ProductEntity;
 import com.cg.gsm.exception.DuplicateRecordException;
 import com.cg.gsm.util.JPAUtil;
 import com.cg.gsm.repository.*;
@@ -19,19 +16,11 @@ public class BookProductServiceImplements implements BookProductServiceInt{
 	BookProductDAOImplementation bookProductImplementation=new BookProductDAOImplementation(entityManager,transaction);
 	long primaryKey;
 	@Override
-	public long add(BookProductEntity bean) {
-		
-		/*	BookProductEntity bookProductEntity=entityManager.find(BookProductEntity.class, bean.getId());
-			if(bookProductEntity!=null)
-			{
-			}
-			else
-			{*/
+	public long add(BookProductEntity bean) throws DuplicateRecordException{
 				transaction.begin();
 				primaryKey=bookProductImplementation.add(bean);
 				transaction.commit();
-			//}
-		return primaryKey;
+				return primaryKey;
 		
 	}
 

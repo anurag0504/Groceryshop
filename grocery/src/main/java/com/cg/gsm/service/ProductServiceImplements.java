@@ -4,7 +4,6 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.util.List;
 import com.cg.gsm.util.*;
-import com.cg.gsm.exception.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.sql.rowset.serial.SerialException;
@@ -25,7 +24,7 @@ public class ProductServiceImplements implements ProductServiceInt{
 		try {
 			
 			ProductEntity productEntity=entityManager.find(ProductEntity.class, bean.getId());
-			if(productEntity!=null)
+		 	if(productEntity!=null)
 			{
 				throw new DuplicateRecordException("Product already exists.");
 			}
@@ -35,9 +34,9 @@ public class ProductServiceImplements implements ProductServiceInt{
 				pk=productDAO.add(bean);
 				transaction.commit();
 			}
-		}catch(DuplicateRecordException e)
+		}catch(DuplicateRecordException exception)
 		{
-			System.out.println(e.getMessage());
+			System.out.println(exception.getMessage());
 		}
 		return pk;
 	}

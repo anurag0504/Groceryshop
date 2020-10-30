@@ -29,7 +29,7 @@ public class ProductEntity extends BaseEntity {
 		this.code = code;
 		this.price = price;
 		this.description = description;
-		this.quantity = quantity;
+		this.quantity = quantity; 
 		this.image = image;
 	}
 
