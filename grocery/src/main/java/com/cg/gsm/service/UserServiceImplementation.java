@@ -5,10 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
-import com.cg.gsm.entities.ProductEntity;
+
 import com.cg.gsm.entities.UserEntity;
 import com.cg.gsm.exception.DuplicateRecordException;
-import com.cg.gsm.repository.ProductDAOImplements;
+
 import com.cg.gsm.repository.UserDAOImplementation;
 import com.cg.gsm.util.JPAUtil;
 
@@ -20,20 +20,21 @@ public class UserServiceImplementation implements UserServiceInt {
 	
 
 	@Override
-	public long add(UserEntity bean) throws DuplicateRecordException {
+	public long add(UserEntity bean) throws DuplicateRecordException{
 		// TODO Auto-generated method stub
-		long primaryKey;
-	
+		long primaryKey=0;
+		
 			UserEntity userEntity=entityManager.find(UserEntity.class, bean.getId());
 			if(userEntity!=null)
 			{
 				throw new DuplicateRecordException("User already exists. ");
 			}
-			else
+			else 
 			{
-				transaction.begin();
+				
 				primaryKey=userDAO.add(bean);
-				transaction.commit();
+				//System.out.println(primaryKey+" "+userDAO.add(bean));
+				
 			}
 		
 		return primaryKey;
@@ -44,8 +45,8 @@ public class UserServiceImplementation implements UserServiceInt {
 	@Override
 	public void delete(UserEntity bean) {
 		// TODO Auto-generated method stub
-		UserEntity entityToBeDeleted=entityManager.merge(bean);
-		
+		//UserEntity entityToBeDeleted=entityManager.merge(bean);
+		UserEntity entityToBeDeleted=entityManager.find(UserEntity.class, bean.getId());
 		transaction.begin();
 		userDAO.delete(entityToBeDeleted);
 		transaction.commit();
@@ -59,13 +60,13 @@ public class UserServiceImplementation implements UserServiceInt {
 			UserEntity userEntity=entityManager.find(UserEntity.class, bean.getId());
 			if(userEntity!=null)
 			{
-				throw new DuplicateRecordException("User not found.");
-			}
-			else
-			{
 				transaction.begin();
 				userDAO.update(bean);
 				transaction.commit();
+			}
+			else 
+			{
+				throw new DuplicateRecordException("User not found.");
 			}
 		}catch(DuplicateRecordException e)
 		{
@@ -118,9 +119,13 @@ public class UserServiceImplementation implements UserServiceInt {
 	@Override
 	public UserEntity authenticate(UserEntity bean) {
 		// TODO Auto-generated method stub
+		System.out.println(bean);
 		transaction.begin();
+		
 		UserEntity userEntity=userDAO.authenticate(bean);
+		
 		transaction.commit();
+		System.out.println(userEntity);
 		return userEntity;
 	}
 
@@ -130,9 +135,9 @@ public class UserServiceImplementation implements UserServiceInt {
 			transaction.begin();
 			userDAO.add(bean);
 			transaction.commit();
-			return bean.getId();
-	}
-
+	 		return bean.getId();
+	 }
+ 
 	@Override
 	public boolean forgetPassword(String login) {
 		// TODO Auto-generated method stub

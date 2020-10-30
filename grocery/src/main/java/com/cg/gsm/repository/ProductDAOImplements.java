@@ -17,12 +17,20 @@ import com.cg.gsm.exception.DuplicateRecordException;
 public class ProductDAOImplements implements ProductDAOInt{
 	
 	EntityManager entityManager;
+	public ProductDAOImplements(){
+		
+	}
 	public ProductDAOImplements(EntityManager entityManager)
 	{
 		this.entityManager=entityManager;
 	}
 	
 	public long add(ProductEntity bean) throws DuplicateRecordException {
+		
+		
+		/*
+		 * adding a product into product entity if the entity is present in table then throw a user defined DeplicatRecordException
+		 */
 		
 		entityManager.persist(bean);
 		Query query=entityManager.createQuery("SELECT productEntity from ProductEntity productEntity where prodcutEntity.getEmailId="+bean.getCode());
@@ -32,46 +40,88 @@ public class ProductDAOImplements implements ProductDAOInt{
 	
 	public void update(ProductEntity bean) throws DuplicateRecordException {
 		
-		ProductEntity productEntity=entityManager.find(ProductEntity.class, bean.getId());
-		entityManager.merge(productEntity);
 		
-		//productEntity.setId(bean.getId());
-		/*productEntity.setCreatedBy(bean.getCreatedBy());
-		productEntity.setModifiedBy(bean.getModifiedBy());
-		productEntity.setCreatedDateTime(bean.getCreatedDateTime());
-		productEntity.setModifiedDateTime(bean.getModifiedDateTime());
-		productEntity.setName(bean.getName());
-		productEntity.setCode(bean.getCode());
-		productEntity.setPrice(bean.getPrice());
-		productEntity.setDescription(bean.getDescription());
-		productEntity.setQuantity(bean.getQuantity());
-		productEntity.setImage(bean.getImage());
-		*/
+		/*
+		 * updating a parameter of product entity
+		 */
+		
+		ProductEntity productEntity=entityManager.find(ProductEntity.class, bean.getId());
+		entityManager.merge(productEntity);	
 		
 	}
 	
-	public void delete(ProductEntity bean) {
+	public boolean delete(ProductEntity bean) {
+		
+		/*
+		 * deleting a record of product entity
+		 */
 		
 		entityManager.remove(bean);
+		
+		ProductEntity productEntity=entityManager.find(ProductEntity.class, bean.getId());
+		if(productEntity==null)
+		{
+			return true;
+		}
+		return false;
 		
 	}
 	
 	public ProductEntity findByName(String name) {
 		
-		Query query=entityManager.createQuery("SELECT productEntity from ProductEntity productEntity where productEntity.getName()==name",ProductEntity.class);
-		return (ProductEntity)query.getSingleResult();
+		
+		/*
+		 * searching a record by using name as a parameter
+		 */
+		
+		Query query=entityManager.createQuery("SELECT productEntity from ProductEntity productEntity where name=:name",ProductEntity.class);
+		query.setParameter("name", name);
+		
+		ProductEntity productEntity=(ProductEntity)query.getSingleResult();
+		if(productEntity!=null)
+		{
+			return productEntity;
+		}else
+		{
+			return null;
+		}
+		
+		
 	}
 	
 	public ProductEntity findByCode(String code) {
 		
-		Query query=entityManager.createQuery("SELECT productEntity from ProductEntity productEntity where productEntity.getCode()==code",ProductEntity.class);
-		return (ProductEntity)query.getSingleResult();
+		/*
+		 * searching a record by using code as a parameter
+		 */
+		
+		Query query=entityManager.createQuery("SELECT productEntity from ProductEntity productEntity where productEntity.getCode()=:code",ProductEntity.class);
+		query.setParameter("code", code);
+		ProductEntity productEntity=(ProductEntity)query.getSingleResult();
+		if(productEntity!=null)
+		{
+			return productEntity;
+		}else
+		{
+			return null;
+		}
 		
 	}
 	
 	public ProductEntity findByPk(long id) {
 		
-		return entityManager.find(ProductEntity.class, id);
+		/*
+		 * searching a record by using passing primary key 
+		 */
+		
+		ProductEntity productEntity= entityManager.find(ProductEntity.class, id);
+		if(productEntity!=null)
+		{
+			return productEntity;
+		}else
+		{
+			return null;
+		}
 		
 	}
 	
@@ -80,6 +130,11 @@ public class ProductDAOImplements implements ProductDAOInt{
 	}
 	
 	public List<ProductEntity> search(ProductEntity bean){
+		
+		/*
+		 * searching a list of records by using any parameter of the object
+		 */
+		
 		Query query=entityManager.createQuery("SELECT productEntity from ProductEntity productEntity",ProductEntity.class);
 		ArrayList<ProductEntity> productList=new ArrayList<ProductEntity>(query.getResultList());
 		return productList;

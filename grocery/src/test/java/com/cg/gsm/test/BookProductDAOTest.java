@@ -1,8 +1,5 @@
 package com.cg.gsm.test;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Date;
@@ -11,10 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
+import org.junit.Test;
+
 import com.cg.gsm.entities.BookProductEntity;
-import com.cg.gsm.entities.UserEntity;
+
 import com.cg.gsm.repository.BookProductDAOImplementation;
-import com.cg.gsm.repository.UserDAOImplementation;
+
 
 import junit.framework.Assert;
 import junit.framework.TestCase;
@@ -24,10 +24,9 @@ public class BookProductDAOTest extends TestCase {
 	EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myPU");
 	EntityManager entityManager=entityManagerFactory.createEntityManager();
 	EntityTransaction entityTransaction=entityManager.getTransaction();
-	//BookProductDAOImplementation bookProductDAOImplementation =new BookProductDAOImplementation(entityManager, entityTransaction);
 	
 	
-	public void testAdd() {
+	/*public void testAdd() {
 		
 		UserDAOImplementation user=mock(UserDAOImplementation.class);
 		UserEntity userobj=new UserEntity("createdBy","modifiedBy",Timestamp.from(Instant.now()),
@@ -38,32 +37,52 @@ public class BookProductDAOTest extends TestCase {
 		
 		Assert.assertEquals(userobj.getId(),user.add(userobj));
 		
-	 }
-
-	/*public void testUpdate() {
-		fail("Not yet implemented");
-	}
-
-	public void testDelete() {
-		fail("Not yet implemented");
-	}
-
-	public void testFindByName() {
-		fail("Not yet implemented");
-	}
-
-	public void testFindByPk() {
-		fail("Not yet implemented");
-	}
-
-	public void testSearchBookProductEntityLongInt() {
-		fail("Not yet implemented");
-	}
-
-	public void testSearchBookProductEntity() {
-		fail("Not yet implemented");
-	}
+	 }*/
+	
 
 	
-*/
+	BookProductEntity bean=new BookProductEntity("createdBy","modifiedBy",Timestamp.from(Instant.now()),
+			Timestamp.from(Instant.now()),2L,"Dairy Milk","Anurag","anurag@gmail.com","8790145405","India",
+			"Telangana","Hyderabad","500072","Kkp",100L,"2","1000",new Date());
+	
+	BookProductDAOImplementation bookProductDAOImplementation;
+	
+	
+	@Test
+	public void testAdd() {
+		
+		Assert.assertEquals(bean.getId(),bookProductDAOImplementation.add(bean));
+		
+	}
+
+	@Test
+	public void testUpdate() {
+		
+		
+		Assert.assertEquals(bean,bookProductDAOImplementation.findByName(bean.getName()));
+		
+	}
+
+	@Test
+	public void testDelete() {
+	
+		Assert.assertEquals(null,bookProductDAOImplementation.findByName(bean.getName()));
+		
+	} 
+
+	@Test
+	public void testfindByName() {
+		
+		Assert.assertEquals(bean,bookProductDAOImplementation.findByName(bean.getName()));
+		
+	} 
+		@Test
+	public void testfindByPk() {
+		
+		
+		Assert.assertEquals(bean,bookProductDAOImplementation.findByPk(bean.getId()));
+		
+	} 
+	
+	
 }

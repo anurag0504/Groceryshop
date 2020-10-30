@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 import com.cg.gsm.entities.BookProductEntity;
 
-import junit.framework.Assert;
 
 public class BookProductDAOImplementation implements BookProductDAOInt {
 
@@ -36,30 +33,7 @@ public class BookProductDAOImplementation implements BookProductDAOInt {
 	public void update(BookProductEntity bean) {
 		// TODO Auto-generated method stub
 		BookProductEntity bookProductEntity=entityManager.find(BookProductEntity.class,bean.getId());
-		
 		entityManager.merge(bookProductEntity);
-		
-//		bookProductEntity.setId(bean.getId());
-	/*	bookProductEntity.setName(bean.getName());
-		bookProductEntity.setCreatedBy(bean.getCreatedBy());
-		bookProductEntity.setModifiedBy(bean.getModifiedBy());
-		bookProductEntity.setCreatedDateTime(bean.getCreatedDateTime());
-		bookProductEntity.setModifiedDateTime(bean.getModifiedDateTime());
-		bookProductEntity.setProductId(bean.getProductId());
-		bookProductEntity.setProductName(bean.getProductName());
-		bookProductEntity.setName(bean.getName());
-		bookProductEntity.setEmailId(bean.getEmailId());
-		bookProductEntity.setMobileNo(bean.getMobileNo());
-		bookProductEntity.setCountry(bean.getCountry());
-		bookProductEntity.setState(bean.getState());
-		bookProductEntity.setDistrict(bean.getDistrict());
-		bookProductEntity.setPincode(bean.getPincode());
-		bookProductEntity.setAddress(bean.getAddress());
-		bookProductEntity.setUserId(bean.getUserId());
-		bookProductEntity.setQuantity(bean.getQuantity());
-		bookProductEntity.setAnmount(bean.getAnmount());
-		bookProductEntity.setDate(bean.getDate());		
-		*/
 	}
 
 	@Override
