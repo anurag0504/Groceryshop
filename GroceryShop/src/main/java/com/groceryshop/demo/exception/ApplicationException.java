@@ -1,23 +1,16 @@
-package com.cg.gsm.app.exception;
+package com.groceryshop.demo.exception;
 
 
 
-public class ApplicationException  extends RuntimeException
+
+
+public class ApplicationException  extends Exception
 {
-	public ApplicationException() {
-		super();
-	}
-	
+	/**
+	 * @param msg
+	 *            : Error message
+	 */
 	public ApplicationException(String msg) {
 		super(msg);
 	}
-	
-	public ApplicationException(String msg,Throwable clause) {
-		super(msg,clause);
-	}
-	
-	public ApplicationException(Throwable clause) {
-		super(clause);
-	}
-	
 }

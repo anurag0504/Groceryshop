@@ -10,22 +10,20 @@ import javax.persistence.OneToOne;
 public class UserEntity extends BaseEntity {
 
 
-	private String loginId;
+	private int userId;
 	private String password;
-	private String emailId;
 	private long roleId;
 
 	
 	public UserEntity() {
 		super();
 	}
-
-	public String getLoginId() {
-		return loginId;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
 	public String getPassword() {
@@ -34,14 +32,6 @@ public class UserEntity extends BaseEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getEmailId() {
-		return emailId;
-	}
-
-	public void setEmailId(String emailId) {
-		this.emailId = emailId;
 	}
 
 	public long getRoleId() {
@@ -64,17 +54,17 @@ public class UserEntity extends BaseEntity {
 		return null;
 	}
 	
-	public UserEntity(String createdBy, String modifiedBy, Timestamp createdDateTime, Timestamp modifiedDateTime,String loginId, String password, String emailId, long roleId) {
+	public UserEntity(String createdBy, String modifiedBy, Timestamp createdDateTime, Timestamp modifiedDateTime,int userId, String password, String emailId, long roleId) {
 		super(createdBy, modifiedBy, createdDateTime, modifiedDateTime);
-		this.loginId = loginId;
+		this.userId = userId;
 		this.password = password;
-		this.emailId = emailId;
+		
 		this.roleId = roleId;
 	}
 
 	@Override
 	public String toString() {
-		return "UserEntity [loginId=" + loginId + ", password=" + password + ", emailId=" + emailId + ", roleId="
+		return "UserEntity [userId=" + userId + ", password=" + password + ", roleId="
 				+ roleId + ", id=" + id + ", createdBy=" + createdBy + ", modifiedBy=" + modifiedBy
 				+ ", createdDateTime=" + createdDateTime + ", modifiedDateTime=" + modifiedDateTime + "]";
 	}

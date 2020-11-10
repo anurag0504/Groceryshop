@@ -1,21 +1,15 @@
-package com.cg.gsm.app.exception;
+package com.groceryshop.demo.exception;
 
 
-public class DuplicateRecordException  extends RuntimeException
+
+
+public class DuplicateRecordException  extends Exception
 {
-	public DuplicateRecordException() {
-		super();
-	}
-	
+	/**
+	 * @param msg
+	 *            error message
+	 */
 	public DuplicateRecordException(String msg) {
 		super(msg);
-	}
-	
-	public DuplicateRecordException(String msg,Throwable clause) {
-		super(msg,clause);
-	}
-	
-	public DuplicateRecordException(Throwable clause) {
-		super(clause);
 	}
 }

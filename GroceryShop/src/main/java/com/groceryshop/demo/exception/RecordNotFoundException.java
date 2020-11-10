@@ -1,21 +1,16 @@
-package com.cg.gsm.app.exception;
+package com.groceryshop.demo.exception;
 
 
-public class RecordNotFoundException extends RuntimeException
+
+public class RecordNotFoundException extends Exception
 {
-	public RecordNotFoundException() {
-		super();
-	}
-	
+
+	/**
+	 * @param msg
+	 *            error message
+	 */
 	public RecordNotFoundException(String msg) {
 		super(msg);
-	}
-	
-	public RecordNotFoundException(String msg,Throwable clause) {
-		super(msg,clause);
-	}
-	
-	public RecordNotFoundException(Throwable clause) {
-		super(clause);
+
 	}
 }
