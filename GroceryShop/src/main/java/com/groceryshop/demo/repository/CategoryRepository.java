@@ -6,8 +6,4 @@ import com.groceryshop.demo.entitites.CategoryEntity;
 
 public interface CategoryRepository extends JpaRepository<CategoryEntity, Integer>{
 
-	CategoryEntity findByCategoryName(String name);
-
-	CategoryEntity findByCategoryId(Integer id);
-
 }

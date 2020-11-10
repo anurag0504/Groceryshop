@@ -11,8 +11,10 @@ import javax.persistence.OneToOne;
 public class CustomerEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private String customerId;
+	private String loginId;
 	private String customerName;
+	private String emailId;
+	private String password;
 	private String phoneNumber;
 	private String country;
 	private String state;
@@ -24,12 +26,11 @@ public class CustomerEntity {
 	private UserEntity userEntity;
 	
 	
-	
-	public String getCustomerId() {
-		return customerId;
+	public String getLoginId() {
+		return loginId;
 	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 	public String getCustomerName() {
 		return customerName;
@@ -37,7 +38,18 @@ public class CustomerEntity {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -74,12 +86,13 @@ public class CustomerEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public CustomerEntity(String customerId, String customerName, String phoneNumber,
+	public CustomerEntity(String loginId, String customerName, String emailId, String password, String phoneNumber,
 			String country, String state, String district, String pincode, String address) {
 		super();
-		this.customerId = customerId;
+		this.loginId = loginId;
 		this.customerName = customerName;
-		
+		this.emailId = emailId;
+		this.password = password;
 		this.phoneNumber = phoneNumber;
 		this.country = country;
 		this.state = state;
@@ -93,8 +106,8 @@ public class CustomerEntity {
 	}
 	@Override
 	public String toString() {
-		return "CustomerEntity [custoemerId=" + customerId + ", customerName=" + customerName 
-				 + ", phoneNumber=" + phoneNumber + ", country=" + country + ", state="
+		return "CustomerEntity [loginId=" + loginId + ", customerName=" + customerName + ", emailId=" + emailId
+				+ ", password=" + password + ", phoneNumber=" + phoneNumber + ", country=" + country + ", state="
 				+ state + ", district=" + district + ", pincode=" + pincode + ", address=" + address + "]";
 	}
 	
