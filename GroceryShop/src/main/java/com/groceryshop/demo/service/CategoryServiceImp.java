@@ -14,50 +14,33 @@ import com.groceryshop.demo.exception.DuplicateRecordException;
 import com.groceryshop.demo.repository.CategoryRepository;
 
 @Service
-public class CategoryServiceImp implements CategoryServiceInt {
+public class CategoryServiceImp {
 @Autowired
  public CategoryRepository categoryRepository;
 
 	public long add(CategoryEntity bean) throws DuplicateRecordException
 	{
-		CategoryEntity category=categoryRepository.save(bean);
-		System.out.println(category);
-		return category.getId();
+		return 0;
 		
 	}
 
-	public CategoryEntity update(CategoryEntity bean) throws DuplicateRecordException
+	public void update(CategoryEntity bean) throws DuplicateRecordException
 	{
-		CategoryEntity category=categoryRepository.save(bean);
-		return category;
 		
 	}
 
-	public boolean delete(CategoryEntity bean)
+	public void delete(CategoryEntity bean)
 	{
-		categoryRepository.delete(bean);
-		if(categoryRepository.existsById(bean.getCategoryId()))
-		{
-			return false;
-		}
-		else
-		{
-			return true;
-		}
 		
 	}
-	
-	public CategoryEntity findByCategoryname(String name) {
-		CategoryEntity category=categoryRepository.findByCategoryName(name);
-		return category;
+	public CategoryEntity findByName(String name) {
+		return null;
 		
 	}
 
-	public CategoryEntity findByCategoryId(Integer id)
+	public CategoryEntity findByCode(String id)
 	{
-		CategoryEntity category=categoryRepository.findByCategoryId(id);
-		System.out.println(category);
-		return category;
+		return null;
 		
 	}
 
@@ -68,7 +51,7 @@ public class CategoryServiceImp implements CategoryServiceInt {
 	
 	public List<CategoryEntity> search(CategoryEntity bean)
 	{
-		return categoryRepository.findAll();
+		return null;
 		
 	}
 
@@ -77,9 +60,4 @@ public class CategoryServiceImp implements CategoryServiceInt {
 		return null;
 		
 	}
-
-	
-
-
-	
 }

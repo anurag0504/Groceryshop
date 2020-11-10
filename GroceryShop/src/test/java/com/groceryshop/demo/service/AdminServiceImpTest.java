@@ -1,11 +1,10 @@
 package com.groceryshop.demo.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-class CategoryServiceImpTest {
-
+class AdminServiceImpTest {
 	@Test
 	void testAdd() {
 		fail("Not yet implemented");
@@ -22,28 +21,20 @@ class CategoryServiceImpTest {
 	}
 
 	@Test
-	void testFindByName() {
+	void testFindByLogin() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testSearchUserEntityLongInt() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	void testSearchUserEntity() {
 		fail("Not yet implemented");
 	}
 
-	@Test
-	void testFindByCode() {
-		fail("Not yet implemented");
-	}
 
-	@Test
-	void testSearchCategoryEntityLongInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testSearchCategoryEntity() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	void testGetImageById() {
-		fail("Not yet implemented");
-	}
 
 }

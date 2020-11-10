@@ -11,18 +11,19 @@ import javax.persistence.OneToOne;
 public class AdminEntity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int adminId;
+	private String loginId;
 	private String adminName;
+	private String password;
+	private String emailId;
 	
 	@OneToOne(targetEntity=UserEntity.class, cascade=CascadeType.ALL)
 	private UserEntity userEntity;
 	
-	
-	public int getAdminId() {
-		return adminId;
+	public String getLoginId() {
+		return loginId;
 	}
-	public void setAdminId(int adminId) {
-		this.adminId = adminId;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 	public String getAdminName() {
 		return adminName;
@@ -30,12 +31,24 @@ public class AdminEntity {
 	public void setAdminName(String adminName) {
 		this.adminName = adminName;
 	}
-	
-	public AdminEntity(int adminId, String adminName) {
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public AdminEntity(String loginId, String adminName, String password, String emailId) {
 		super();
-		this.adminId = adminId;
+		this.loginId = loginId;
 		this.adminName = adminName;
-		
+		this.password = password;
+		this.emailId = emailId;
 	}
 	public AdminEntity() {
 		super();
@@ -43,7 +56,8 @@ public class AdminEntity {
 	}
 	@Override
 	public String toString() {
-		return "AdminEntity [adminId=" + adminId + ", adminName=" + adminName + "]";
+		return "AdminEntity [loginId=" + loginId + ", adminName=" + adminName + ", password=" + password + ", emailId="
+				+ emailId + "]";
 	}
 	
 	

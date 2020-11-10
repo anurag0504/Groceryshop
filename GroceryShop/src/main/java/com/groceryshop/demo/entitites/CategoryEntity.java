@@ -17,6 +17,7 @@ public class CategoryEntity extends BaseEntity{
 	private String categoryName;
 	
 	@OneToMany
+	@JoinTable(name="ProductEntity",joinColumns =@JoinColumn(name="categoryId"),inverseJoinColumns =@JoinColumn(name="productCode"))
 	private Collection<ProductEntity> products;
 	
 	public int getCategoryId() {
