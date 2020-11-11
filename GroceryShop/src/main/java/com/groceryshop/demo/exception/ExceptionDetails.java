@@ -1,4 +1,6 @@
-package com.cg.gsm.app.exception;
+package com.groceryshop.demo.exception;
+
+
 
 import java.util.Date;
 
