@@ -1,4 +1,7 @@
-package com.cg.gsm.app.exception;
+package com.groceryshop.demo.exception;
+
+
+
 
 import java.util.Date;
 
@@ -17,29 +20,29 @@ public class GlobalExceptionHandler {
     	ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
-
+    
     @ExceptionHandler(DatabaseException.class)
     @ResponseStatus(value=HttpStatus.NOT_FOUND)
     public ResponseEntity<Object> resouceNotFoundException(DatabaseException ex, WebRequest request) {
     	ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
-    
+
     @ExceptionHandler(DuplicateRecordException.class)
     @ResponseStatus(value=HttpStatus.NOT_FOUND)
     public ResponseEntity<Object> resouceNotFoundException(DuplicateRecordException ex, WebRequest request) {
     	ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
-    
+
     @ExceptionHandler(RecordNotFoundException.class)
     @ResponseStatus(value=HttpStatus.NOT_FOUND)
     public ResponseEntity<Object> resouceNotFoundException(RecordNotFoundException ex, WebRequest request) {
     	ExceptionDetails exceptionDetails = new ExceptionDetails(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity<>(exceptionDetails, HttpStatus.NOT_FOUND);
     }
-    
-    
+
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<Object> globleExcpetionHandler(Exception ex, WebRequest request) {
