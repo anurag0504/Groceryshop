@@ -1,33 +1,42 @@
 package com.groceryshop.demo.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+import com.groceryshop.demo.entitites.CustomerEntity;
 import com.groceryshop.demo.entitites.UserEntity;
+import com.groceryshop.demo.exception.DuplicateRecordException;
 import com.groceryshop.demo.repository.UserRepository;
 
-@Component
-public class UserServiceImp {
-	
-	@Autowired
-	UserRepository userRepository;
-	
-	@Transactional
-	public UserEntity addUser(UserEntity user)
-	{
-	return userRepository.save(user);
-	}
-	
-	@Transactional
-    public String updateUser(UserEntity user) {
-        return userRepository.save(user).getLoginId();
+@Service
+public class UserServiceImp implements UserServiceInt {
+
+    @Autowired
+    UserRepository repository;
+    
+    @Override
+    public UserEntity add(UserEntity bean) {
+        
+        UserEntity user= repository.save(bean);
+        return user;
     }
-     
-	@Transactional
-	public void deleteUserById(long loginId) {
-		userRepository.deleteById((int) loginId);
-	}
+
+    @Override
+    public void delete(UserEntity bean) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void update(UserEntity bean) throws DuplicateRecordException {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public UserEntity authenticate(UserEntity bean) {
+        // TODO Auto-generated method stub
+        return null;
+    }
 
 }

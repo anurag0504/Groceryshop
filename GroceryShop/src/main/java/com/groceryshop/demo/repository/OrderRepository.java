@@ -6,4 +6,8 @@ import com.groceryshop.demo.entitites.OrderEntity;
 
 public interface OrderRepository extends JpaRepository<OrderEntity, Integer>{
 
+    OrderEntity findByName(String name);
+
+   
+
 }

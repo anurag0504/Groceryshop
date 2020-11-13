@@ -1,20 +1,36 @@
-package com.cg.gsm.app.exception;
+package com.groceryshop.demo.exception;
 
-@SuppressWarnings("serial")
-public class DatabaseException extends RuntimeException {
-    public DatabaseException() {
-        super();
-    }
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-    public DatabaseException(String msg) {
-        super(msg);
-    }
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class DatabaseException  extends RuntimeException
+{
 
-    public DatabaseException(String msg, Throwable clause) {
-        super(msg, clause);
-    }
+   public DatabaseException(String msg) {
+       super(msg);
+   }
 
-    public DatabaseException(Throwable clause) {
-        super(clause);
-    }
+public DatabaseException() {
+	super();
+
 }
+
+public DatabaseException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+	super(message, cause, enableSuppression, writableStackTrace);
+	
+}
+
+public DatabaseException(String message, Throwable cause) {
+	super(message, cause);
+	
+}
+
+public DatabaseException(Throwable cause) {
+	super(cause);
+
+}
+   
+   
+}
+

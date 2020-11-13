@@ -2,9 +2,7 @@ package com.groceryshop.demo.entitites;
 
 import java.sql.Timestamp;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 
 @Entity
 public class UserEntity extends BaseEntity {
@@ -17,7 +15,7 @@ public class UserEntity extends BaseEntity {
 	
 	public UserEntity() {
 		super();
-	}
+	} 
 	public int getUserId() {
 		return userId;
 	}

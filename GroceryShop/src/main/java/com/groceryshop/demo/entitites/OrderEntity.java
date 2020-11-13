@@ -30,7 +30,7 @@ public class OrderEntity extends BaseEntity {
 	private UserEntity userEntity;
 	
 	public OrderEntity() {
-		super();
+		super(); 
 	}
 	
 	

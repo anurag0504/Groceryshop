@@ -20,12 +20,12 @@ public abstract class BaseEntity implements DropdownList {
 
 	public BaseEntity() {
 		super();
-	}
+	} 
 
 	public BaseEntity(String createdBy, String modifiedBy, Timestamp createdDateTime,
 			Timestamp modifiedDateTime) {
 		super(); 
-		this.id = id;
+		
 		this.createdBy = createdBy;
 		this.modifiedBy = modifiedBy;
 		this.createdDateTime = createdDateTime;
