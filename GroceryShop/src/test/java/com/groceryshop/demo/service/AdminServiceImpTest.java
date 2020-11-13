@@ -19,12 +19,12 @@ import com.groceryshop.demo.exception.DuplicateRecordException;
 class AdminServiceImpTest {
 	@Mock
 	AdminServiceImp adminServiceImp;
-	
-		AdminEntity adminEntity=new AdminEntity(2,"Priyanka","Priya@567","priya@gmail.com");
-	
+
+	AdminEntity adminEntity=new AdminEntity(2,"Priyanka","Priya@567","priya@gmail.com");
+
 	@Test
 	void testAdd() throws DuplicateRecordException {
-	    when(adminServiceImp.add(adminEntity)).thenReturn(adminEntity.getLoginId());
+		when(adminServiceImp.add(adminEntity)).thenReturn(adminEntity.getLoginId());
 		assertEquals(adminEntity.getLoginId(),adminServiceImp.add(adminEntity));
 	}
 
@@ -38,17 +38,17 @@ class AdminServiceImpTest {
 	void testDelete()  {
 		adminServiceImp.delete(2);
 		verify(adminServiceImp,times(1)).delete(2);
-			} 
-		
-	
+	} 
+
+
 
 	@Test
 	void testFindByLogin() {
 		when(adminServiceImp.findByLoginId(2)).thenReturn(adminEntity);
 		assertEquals(adminEntity,adminServiceImp.findByLoginId(2));
 	}
-	
-	
+
+
 	@Test
 	void testSearchUserEntity() {
 		AdminEntity adminEntity1=new AdminEntity(2,"Priyanka","Priya@567","priya@gmail.com");

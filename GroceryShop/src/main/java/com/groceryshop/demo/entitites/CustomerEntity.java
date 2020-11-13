@@ -1,41 +1,20 @@
 package com.groceryshop.demo.entitites;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-//localhost:8020/addCustomer?id=5&country=ind&customerName=raj&district=hyd&phoneNumber=9876543210&pincode=500078&state=ts&id=4&createdBy=admin&createdDateTime=2020-10-11 16:22:01&modifiedBy=admin&modifiedDateTime=2020-10-11 16:22:01&password=abc&roleId=1&userId=15
-//{
-//    "id": 5,
-//    "customerName": "raj",
-//    "phoneNumber": "9876543210",
-//    "country": "ind",
-//    "state": "ts",
-//    "district": "hyd",
-//    "pincode": "500078",
-//    "address": null,
-//    "userEntity": {
-//        "id":4,
-//        "createdBy":"admin",
-//        "createdDateTime":"2020-10-11 16:22:01",
-//        "modifiedBy":"admin",
-//        "modifiedDateTime":"2020-10-11 16:22:01",
-//        "password":"abc",
-//        "roleId":1,
-//        "userId":15
-
-    
 @Entity
 public class CustomerEntity {
 	@Id
-	@Column(name="id")
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
+	private String loginId;
 	private String customerName;
+	private String emailId;
+	private String password;
 	private String phoneNumber;
 	private String country;
 	private String state;
@@ -43,16 +22,15 @@ public class CustomerEntity {
 	private String pincode;
 	private String address;
 	
-	
 	@OneToOne(targetEntity=UserEntity.class, cascade=CascadeType.ALL)
 	private UserEntity userEntity;
 	
 	
-	public Long getId() {
-		return id;
+	public String getLoginId() {
+		return loginId;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 	public String getCustomerName() {
 		return customerName;
@@ -60,20 +38,19 @@ public class CustomerEntity {
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
 	}
-	 
-	public CustomerEntity(Long id, String customerName, String phoneNumber, String country, String state, String district, String pincode, String address, UserEntity userEntity) {
-        super();
-        this.id = id;
-        this.customerName = customerName;
-        this.phoneNumber = phoneNumber;
-        this.country = country;
-        this.state = state;
-        this.district = district;
-        this.pincode = pincode;
-        this.address = address;
-        this.userEntity = userEntity;
-    }
-    public String getPhoneNumber() {
+	public String getEmailId() {
+		return emailId;
+	}
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 	public void setPhoneNumber(String phoneNumber) {
@@ -109,24 +86,30 @@ public class CustomerEntity {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
+	public CustomerEntity(String loginId, String customerName, String emailId, String password, String phoneNumber,
+			String country, String state, String district, String pincode, String address) {
+		super();
+		this.loginId = loginId;
+		this.customerName = customerName;
+		this.emailId = emailId;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.country = country;
+		this.state = state;
+		this.district = district;
+		this.pincode = pincode;
+		this.address = address;
+	}
 	public CustomerEntity() {
 		super();
-	
+		// TODO Auto-generated constructor stub
 	}
-	
-	public UserEntity getUserEntity() {
-		return userEntity;
+	@Override
+	public String toString() {
+		return "CustomerEntity [loginId=" + loginId + ", customerName=" + customerName + ", emailId=" + emailId
+				+ ", password=" + password + ", phoneNumber=" + phoneNumber + ", country=" + country + ", state="
+				+ state + ", district=" + district + ", pincode=" + pincode + ", address=" + address + "]";
 	}
-	
-	public void setUserEntity(UserEntity userEntity) {
-		this.userEntity = userEntity;
-	}
-    @Override
-    public String toString() {
-        return "CustomerEntity [id=" + id + ", customerName=" + customerName + ", phoneNumber=" + phoneNumber + ", country=" + country + ", state=" + state + ", district="
-                + district + ", pincode=" + pincode + ", address=" + address + ", userEntity=" + userEntity + "]";
-    }
 	
 	
 	

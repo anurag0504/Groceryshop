@@ -2,26 +2,38 @@ package com.groceryshop.demo.entitites;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity
 public class UserEntity extends BaseEntity {
 
 
-	private int userId;
+	private String loginId;
 	private String password;
+	private String emailId;
 	private long roleId;
 
 	
-	public UserEntity() {
+	public UserEntity(String loginId, String password, String emailId, long roleId) {
 		super();
-	} 
-	public int getUserId() {
-		return userId;
+		this.loginId = loginId;
+		this.password = password;
+		this.emailId = emailId;
+		this.roleId = roleId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public UserEntity() {
+		super();
+	}
+
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	public String getPassword() {
@@ -30,6 +42,14 @@ public class UserEntity extends BaseEntity {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
 	}
 
 	public long getRoleId() {
@@ -52,17 +72,18 @@ public class UserEntity extends BaseEntity {
 		return null;
 	}
 	
-	public UserEntity(String createdBy, String modifiedBy, Timestamp createdDateTime, Timestamp modifiedDateTime,int userId, String password, String emailId, long roleId) {
+	public UserEntity(String createdBy, String modifiedBy, Timestamp createdDateTime, Timestamp modifiedDateTime,String loginId, String password, String emailId, long roleId) {
 		super(createdBy, modifiedBy, createdDateTime, modifiedDateTime);
-		this.userId = userId;
+		this.loginId = loginId;
 		this.password = password;
-		
+		this.emailId = emailId;
 		this.roleId = roleId;
 	}
 
+
 	@Override
 	public String toString() {
-		return "UserEntity [userId=" + userId + ", password=" + password + ", roleId="
+		return "UserEntity [loginId=" + loginId + ", password=" + password + ", emailId=" + emailId + ", roleId="
 				+ roleId + ", id=" + id + ", createdBy=" + createdBy + ", modifiedBy=" + modifiedBy
 				+ ", createdDateTime=" + createdDateTime + ", modifiedDateTime=" + modifiedDateTime + "]";
 	}

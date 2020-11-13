@@ -19,55 +19,55 @@ import com.groceryshop.demo.exception.RecordNotFoundException;
 
 
 @SpringBootTest
- class UserControllerTest {
+class UserControllerTest {
 	@Mock
-    UserController userController;
-	
+	UserController userController;
+
 	UserEntity userEntity=new UserEntity("Admin","Admin",Timestamp.from(Instant.now()),Timestamp.from(Instant.now()),"2","Priya@567","priya@gmail.com",765);
 	ResponseEntity<UserEntity> responseEntity =new ResponseEntity<UserEntity>(userEntity,HttpStatus.OK);
-	
-	
+
+
 	@Test
 	void testAddUser()  {
-	    when(userController.addUserEntity(userEntity)).thenReturn(responseEntity);
-        Object response=userController.addUserEntity(userEntity);
-        assertEquals(responseEntity,response);
+		when(userController.addUserEntity(userEntity)).thenReturn(responseEntity);
+		Object response=userController.addUserEntity(userEntity);
+		assertEquals(responseEntity,response);
 	}
 
-    
+
 	@Test
 	void testUpdateUser(){
-	    when(userController.updateUserEntity(userEntity)).thenReturn(responseEntity);
-	    Object response=userController.updateUserEntity(userEntity);
-	    assertEquals(responseEntity,response);
+		when(userController.updateUserEntity(userEntity)).thenReturn(responseEntity);
+		Object response=userController.updateUserEntity(userEntity);
+		assertEquals(responseEntity,response);
 	}
-	
+
 
 	@Test
 	void testDeleteUser() {
-	    when(userController.deleteUserEntity(2)).thenReturn(responseEntity); 
-	    Object response=userController.deleteUserEntity(2);
-	    assertEquals(responseEntity,response);
+		when(userController.deleteUserEntity(2)).thenReturn(responseEntity); 
+		Object response=userController.deleteUserEntity(2);
+		assertEquals(responseEntity,response);
 	}
 	@Test
-    void testAddUserException()  {
-        when(userController.addUserEntity(userEntity)).thenThrow(new DuplicateRecordException("Duplicate record found"));
-        assertThrows(DuplicateRecordException.class, ()->{userController.addUserEntity(userEntity);});
-    }
-    
-    @Test
-    void testUpdateUserException()  {
-        when(userController.updateUserEntity(userEntity)).thenThrow(new RecordNotFoundException("Record not found"));
-        assertThrows(RecordNotFoundException.class, ()->{userController.updateUserEntity(userEntity);});
-    }
+	void testAddUserException()  {
+		when(userController.addUserEntity(userEntity)).thenThrow(new DuplicateRecordException("Duplicate record found"));
+		assertThrows(DuplicateRecordException.class, ()->{userController.addUserEntity(userEntity);});
+	}
 
-    @Test
-    void testDeleteUserException() {
-        when(userController.deleteUserEntity(2)).thenThrow(new RecordNotFoundException("Record not found"));
-        assertThrows(RecordNotFoundException.class, ()->{userController.deleteUserEntity(2);});
-    }
-    
-	
+	@Test
+	void testUpdateUserException()  {
+		when(userController.updateUserEntity(userEntity)).thenThrow(new RecordNotFoundException("Record not found"));
+		assertThrows(RecordNotFoundException.class, ()->{userController.updateUserEntity(userEntity);});
+	}
 
-	
+	@Test
+	void testDeleteUserException() {
+		when(userController.deleteUserEntity(2)).thenThrow(new RecordNotFoundException("Record not found"));
+		assertThrows(RecordNotFoundException.class, ()->{userController.deleteUserEntity(2);});
+	}
+
+
+
+
 }
