@@ -1,31 +1,20 @@
-package com.groceryshop.demo.exception;
+package com.cg.gsm.app.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+@SuppressWarnings("serial")
+public class RecordNotFoundException extends RuntimeException {
+    public RecordNotFoundException() {
+        super();
+    }
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class RecordNotFoundException extends RuntimeException
-{
-	public RecordNotFoundException(String msg) {
-		super(msg);
+    public RecordNotFoundException(String msg) {
+        super(msg);
+    }
 
-	}
-	public RecordNotFoundException() {
-		super();
-		
-	}
-	public RecordNotFoundException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		
-	}
-	public RecordNotFoundException(String message, Throwable cause) {
-		super(message, cause);
-	
-	}
-	public RecordNotFoundException(Throwable cause) {
-		super(cause);
-	}
-	
-	
+    public RecordNotFoundException(String msg, Throwable clause) {
+        super(msg, clause);
+    }
+
+    public RecordNotFoundException(Throwable clause) {
+        super(clause);
+    }
 }

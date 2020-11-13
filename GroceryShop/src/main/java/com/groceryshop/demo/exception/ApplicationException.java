@@ -1,37 +1,21 @@
-package com.groceryshop.demo.exception;
+package com.cg.gsm.app.exception;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
+@SuppressWarnings("serial")
+public class ApplicationException extends RuntimeException {
+    public ApplicationException() {
+        super();
+    }
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class ApplicationException  extends RuntimeException
-{
-	
-	public ApplicationException(String msg) {
-		super(msg);
-	}
+    public ApplicationException(String msg) {
+        super(msg);
+    }
 
-	public ApplicationException() {
-		super();
-	
-	}
+    public ApplicationException(String msg, Throwable clause) {
+        super(msg, clause);
+    }
 
-	public ApplicationException(String message, Throwable cause, boolean enableSuppression,
-			boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		
-	}
+    public ApplicationException(Throwable clause) {
+        super(clause);
+    }
 
-	public ApplicationException(String message, Throwable cause) {
-		super(message, cause);
-	
-	}
-
-	public ApplicationException(Throwable cause) {
-		super(cause);
-		
-	}
-	
-	
-	
 }
