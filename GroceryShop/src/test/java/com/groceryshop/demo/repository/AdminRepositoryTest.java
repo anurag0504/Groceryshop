@@ -2,6 +2,7 @@ package com.groceryshop.demo.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.sql.Timestamp;
@@ -19,16 +20,16 @@ import com.groceryshop.demo.entitites.UserEntity;
 @SpringBootTest
 public class AdminRepositoryTest {
 
-	
+
 	@Mock
 	AdminRepository repository;
 	AdminEntity adminEntity=new AdminEntity(2,"Priyanka","Priya@567","priya@gmail.com");
-	
+
 	@Test 
 	void testFindById() {
 		when(repository.findById((int) adminEntity.getLoginId())).thenReturn(adminEntity.getLoginId());
 		assertEquals(adminEntity,repository.findById((int) adminEntity.getLoginId()));
-		
+
 	}
 	@Test 
 	void testFindAll() {
@@ -44,7 +45,7 @@ public class AdminRepositoryTest {
 		when(repository.save(adminEntity)).thenReturn(adminEntity);
 		assertEquals(adminEntity,repository.save(adminEntity) );
 	}
-	
+
 	@Test 
 	void testDelete() {
 		repository.delete(adminEntity);

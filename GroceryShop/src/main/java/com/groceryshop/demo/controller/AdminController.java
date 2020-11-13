@@ -24,7 +24,18 @@ import com.groceryshop.demo.service.AdminServiceImp;
 public class AdminController {
 	@Autowired
 	AdminServiceImp adminServiceImp;
-
+	/**
+	 * addAdminEntity
+	 * <p>
+	 * In This method we are sending adminEntity object as the parameter.
+	 * with the help of AdminServiceImp we are finding if the object sent is present in the database or not by using the
+	 * method findbyLoginId().If the
+	 * id is present then we are throwing the duplicate record Exception or
+	 * else we are adding the id object to database using add()and returning the ResponseEntity.  
+	 * </p>
+	 * @param bean
+	 * @return ResponseEntity<AdminEntity>
+	 */
 	@PostMapping("/addAdminEntity")
 	public ResponseEntity<AdminEntity> addAdminEntity(@RequestBody AdminEntity bean) {
 		long adminEntityId = adminServiceImp.add(bean);
@@ -34,7 +45,18 @@ public class AdminController {
 			throw new DuplicateRecordException("ID already exists");
 		}
 	}
-
+	/**
+	 * deleteAdminEntity
+	 * <p>
+	 * In This method we are sending adminEntity object as the parameter.
+	 * with the help of AdminServiceImp we are finding if the object sent is present in the database or not by using the
+	 * method findByLoginId().If the
+	 * id is present then we are throwing the duplicate record Exception or
+	 * else we are deleting the order object to database using delete()and returning the ResponseEntity.  
+	 * </p>
+	 * @param bean
+	 * @return ResponseEntity<AdminEntity>
+	 */
 	@DeleteMapping("/deleteAdminEntity/{id}")
 	public ResponseEntity<AdminEntity> deleteAdminEntity(@RequestBody long id) throws RecordNotFoundException {
 		AdminEntity admin = adminServiceImp.findByLoginId(id);
@@ -46,7 +68,17 @@ public class AdminController {
 		}
 
 	}
-
+	/**
+	 * updateAdminEntity
+	 * <p>
+	 * In This method we are sending adminEntity object as the parameter.
+	 * with the help of AdminServiceImp we are finding if the object sent is present in the database or not by using the
+	 * method findByLoginId().If the order is present then we are throwing the duplicate record Exception or
+	 * else we are deleting the id object to database using update()and returning the ResponseEntity.  
+	 * </p>
+	 * @param bean
+	 * @return ResponseEntity<AdminEntity>
+	 */
 	@PutMapping("/updateAdminEntity")
 	public ResponseEntity<AdminEntity> updateAdminEntity(@RequestBody AdminEntity bean) throws RecordNotFoundException {
 		AdminEntity admin = adminServiceImp.findByLoginId(bean.getLoginId());
@@ -59,20 +91,18 @@ public class AdminController {
 			throw new RecordNotFoundException("Login not available with ID:" + bean.getLoginId());
 		}
 	}
-
-	
-	/*@PutMapping("/updateAdminEntity")
-	public ResponseEntity<AdminEntity> updateAdminEntity(@RequestBody AdminEntity bean)
-	{
-		if (adminServiceImp.update(bean))
-		{
-			throw new RecordNotFoundException("Record not found");
-		} else {
-			return new ResponseEntity<AdminEntity>(bean, HttpStatus.OK);
-		}
-	}*/
-	 
-
+	/**
+	 * authenticateAdminEntity
+	 * <p>
+	 * In This method we are sending adminEntity object as the parameter.
+	 * with the help of AdminServiceImp we are finding if the object sent is present in the database or not by using the
+	 * method findByLoginId().If the
+	 * id is present then we are throwing the duplicate record Exception or
+	 * else we are deleting the id object to database using getPassword and returning the ResponseEntity.  
+	 * </p>
+	 * @param bean
+	 * @return ResponseEntity<AdminEntity>
+	 */
 	@GetMapping("/authenticateAdminEntity")
 	public ResponseEntity<AdminEntity> authenticateAdminEntity(@RequestBody AdminEntity bean) {
 		AdminEntity adminEntity = adminServiceImp.findByLoginId(bean.getLoginId());
@@ -88,7 +118,17 @@ public class AdminController {
 			throw new RecordNotFoundException("Invalid userName");
 		}
 	}
-
+	/**
+	 * findByLoginAdminEntity
+	 * <p>
+	 * In This method we are sending adminEntity object as the parameter.
+	 * with the help of AdminServiceImp we are finding if the object sent is present in the database or not by using the
+	 * method findByLogin().If the id is present then we are throwing the duplicate record Exception or
+	 * else we are deleting the id object to database using delete()and returning the ResponseEntity.  
+	 * </p>
+	 * @param bean
+	 * @return ResponseEntity<AdminEntity>
+	 */
 	@GetMapping("/findByLogin/{login}/{id}")
 	public ResponseEntity<AdminEntity> findByLogin(@PathVariable Long id) {
 		if (adminServiceImp.findByLoginId(id) == null) {
@@ -97,7 +137,16 @@ public class AdminController {
 			return new ResponseEntity<AdminEntity>(adminServiceImp.findByLoginId(id), HttpStatus.OK);
 		}
 	}
-
+	/**
+	 * ListAdminEntity
+	 * <p>
+	 * In This method we are sending adminEntity object as the parameter.
+	 * with the help of AdminServiceImpwe are finding if the object sent is present in the database or not by using the
+	 * method checks in list in bean and returned bean.
+	 * </p>
+	 * @param bean
+	 * @return ResponseEntity<AdminEntity>
+	 */
 	@GetMapping("/search/{bean}")
 	public List<AdminEntity> search(@PathVariable AdminEntity bean) {
 		return adminServiceImp.search(bean);
