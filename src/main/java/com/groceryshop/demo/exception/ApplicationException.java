@@ -1,0 +1,37 @@
+package com.groceryshop.demo.exception;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(HttpStatus.NOT_FOUND)
+public class ApplicationException  extends RuntimeException
+{
+	
+	public ApplicationException(String msg) {
+		super(msg);
+	}
+
+	public ApplicationException() {
+		super();
+	
+	}
+
+	public ApplicationException(String message, Throwable cause, boolean enableSuppression,
+			boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+		
+	}
+
+	public ApplicationException(String message, Throwable cause) {
+		super(message, cause);
+	
+	}
+
+	public ApplicationException(Throwable cause) {
+		super(cause);
+		
+	}
+	
+	
+	
+}
