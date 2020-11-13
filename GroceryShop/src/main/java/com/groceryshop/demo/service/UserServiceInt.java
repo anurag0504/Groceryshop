@@ -5,7 +5,7 @@ import com.groceryshop.demo.exception.DuplicateRecordException;
 
 public interface UserServiceInt {
 
-	public long add(UserEntity bean) throws DuplicateRecordException;
+	public UserEntity add(UserEntity bean) throws DuplicateRecordException;
 	
 	public void delete(UserEntity bean) ;
 	

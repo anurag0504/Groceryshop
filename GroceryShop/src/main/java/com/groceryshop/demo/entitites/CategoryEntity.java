@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class CategoryEntity extends BaseEntity{
 
-
+ 
 	private int categoryId;
 	private String categoryName;
 	
@@ -20,7 +20,7 @@ public class CategoryEntity extends BaseEntity{
 	private Collection<ProductEntity> products;
 	
 	public int getCategoryId() {
-		return categoryId;
+	 	return categoryId;
 	}
 	public void setCategoryId(int categoryId) {
 		this.categoryId = categoryId;
@@ -54,7 +54,7 @@ public class CategoryEntity extends BaseEntity{
 		this.categoryName = categoryName;
 	}
 	public CategoryEntity() {
-		super();
+		super(); 
 		// TODO Auto-generated constructor stub
 	}
 	

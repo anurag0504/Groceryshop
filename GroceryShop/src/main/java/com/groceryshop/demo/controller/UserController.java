@@ -12,33 +12,68 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.groceryshop.demo.entitites.AdminEntity;
 import com.groceryshop.demo.entitites.UserEntity;
+import com.groceryshop.demo.exception.DuplicateRecordException;
+import com.groceryshop.demo.exception.RecordNotFoundException;
 import com.groceryshop.demo.service.UserServiceImp;
 
 @RestController
+@RequestMapping("/userEntity")
 public class UserController {
 	
 	@Autowired
-	public UserServiceImp service;
+	UserServiceImp userServiceImp;
 	
-    @PostMapping("/user/add")
-	public ResponseEntity<UserEntity> addUserDetails(@RequestBody UserEntity user)
-	{
-		UserEntity res=service.addUser(user);
-		return new ResponseEntity<UserEntity>(res,HttpStatus.OK);
+	@PostMapping("/addUserEntity")
+	public ResponseEntity<UserEntity> addUserEntity(@RequestBody UserEntity bean)  {
+		long userEntityId = userServiceImp.add(bean);
+		if (userEntityId != 0) {
+			return new ResponseEntity<UserEntity>(bean, HttpStatus.OK);
+		} else {
+			throw new DuplicateRecordException("ID already exists");
+		}
 	}
 	
-	@DeleteMapping("delete/{id}")
-	public void deleteUser(@PathVariable int id)
-	{
-		service.deleteUserById(id);						
+	@DeleteMapping("/deleteUserEntity/{id}")
+	public ResponseEntity<UserEntity> deleteUserEntity(@PathVariable long id){
+		userServiceImp.delete(id);
+		return new ResponseEntity<UserEntity>(HttpStatus.OK);
+	}
+
+	@PutMapping("/updateUserEntity")
+	public ResponseEntity<UserEntity> updateUserEntity(@RequestBody UserEntity bean) {
+		
+		UserEntity user = userServiceImp.update(bean);
+		if (user != null) {
+			userServiceImp.update(bean);
+			return new ResponseEntity<UserEntity>(bean, HttpStatus.OK);
+		}
+
+		else {
+			throw new RecordNotFoundException("Login not available with ID:" + bean.getLoginId());
+		}
 	}
 	
-	@PutMapping("user/update")
-    public String updateUser(UserEntity user)
-    {
-        return service.updateUser(user);                   
-    }
+
+
+	@GetMapping("/authenticateUserEntity")
+	public ResponseEntity<UserEntity> authenticateUserEntity(@RequestBody UserEntity bean) {
+		UserEntity userEntity = userServiceImp.authenticate(bean);
+		if(userEntity!=null)
+		{
+			if(userEntity.getPassword().equals(bean.getPassword()))
+			{
+				return new ResponseEntity<UserEntity>(userEntity, HttpStatus.OK);
+			}else {
+				throw new RecordNotFoundException("Invalid Password");
+			}
+		}else {
+			throw new RecordNotFoundException("Invalid userName");
+		}
+	}
+
 	
+
 
 }
