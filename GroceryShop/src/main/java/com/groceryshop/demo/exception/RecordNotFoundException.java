@@ -2,10 +2,8 @@ package com.groceryshop.demo.exception;
 
 
 
-public class RecordNotFoundException extends RuntimeException{
-
-
-
+public class RecordNotFoundException extends RuntimeException
+{
 
 	/**
 	 * @param msg
