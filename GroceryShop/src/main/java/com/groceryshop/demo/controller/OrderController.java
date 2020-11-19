@@ -17,7 +17,7 @@ import com.groceryshop.demo.exception.RecordNotFoundException;
 import com.groceryshop.demo.service.OrderServiceImp;
 
 @RestController
-
+@RequestMapping("/orderEntity")
 public class OrderController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class OrderController {
         if (order != null) {
             return new ResponseEntity<OrderEntity>(bean, HttpStatus.OK);
         } else {
-            throw new DuplicateRecordException("Order available with ID:" + bean.getId());
+            throw new DuplicateRecordException("Order available with ID:" );
 
         }
 

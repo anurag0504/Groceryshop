@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import com.groceryshop.demo.entitites.OrderEntity;
 import com.groceryshop.demo.repository.OrderRepository;
 
-    @Service
-    public   class OrderServiceImp implements OrderServiceInt {
-        
-    @Autowired
-    public OrderRepository orderRepository;
-    /**
+	@Service
+	public   class OrderServiceImp implements OrderServiceInt {
+	    
+	@Autowired
+	public OrderRepository orderRepository;
+	/**
      * addOrderEntity
      * <p>
      * In This method we are sending orderEntity object as the parameter.
@@ -22,13 +22,13 @@ import com.groceryshop.demo.repository.OrderRepository;
      * @param bean
      * @return ResponseEntity<OrderEntity>
      */
-    
-    public long add(OrderEntity bean)  {
-        OrderEntity order = orderRepository.save(bean);
-        System.out.println(order);
-        return order.getId();
-    }
-    /**
+	
+	public long add(OrderEntity bean)  {
+		OrderEntity order = orderRepository.save(bean);
+		System.out.println(order);
+		return order.getId();
+	}
+	/**
      * updateOrderEntity
      * <p>
      * In This method we are sending orderEntity object as the parameter.
@@ -39,11 +39,11 @@ import com.groceryshop.demo.repository.OrderRepository;
      * @return ResponseEntity<OrderEntity>
      */
 
-    public long update(OrderEntity bean) {
-        OrderEntity order = orderRepository.save(bean);
-        return order.getId();
-    }
-    /**
+	public long update(OrderEntity bean) {
+		OrderEntity order = orderRepository.save(bean);
+		return order.getId();
+	}
+	/**
      * deleteOrderEntity
      * <p>
      * In This method we are sending orderEntity object as the parameter.
@@ -53,13 +53,13 @@ import com.groceryshop.demo.repository.OrderRepository;
      * @param bean
      * @return ResponseEntity<OrderEntity>
      */
-    
-    public OrderEntity delete(OrderEntity bean) {
-        orderRepository.delete(bean);
-        return bean;
+	
+	public OrderEntity delete(OrderEntity bean) {
+		orderRepository.delete(bean);
+		return bean;
 
-    }
-    /**
+	}
+	/**
      * findByName
      * <p>
      * In This method we are sending orderEntity object as the parameter.
@@ -70,10 +70,10 @@ import com.groceryshop.demo.repository.OrderRepository;
      * @return ResponseEntity<OrderEntity>
      */
 
-    public OrderEntity findByName(String name) {
-        return ( orderRepository.findByName(name));
-    }
-    /**
+	public OrderEntity findByName(String name) {
+		return orderRepository.findByName(name);
+	}
+	/**
      * findBypk
      * <p>
      * In This method we are sending orderEntity object as the parameter.
@@ -84,12 +84,12 @@ import com.groceryshop.demo.repository.OrderRepository;
      * @return ResponseEntity<OrderEntity>
      */
 
-    
+	
 
-    public OrderEntity findByPk(long orderPk) {
-        return orderRepository.findById ((int) orderPk).orElse(null);
-    }
-    /**
+	public OrderEntity findByPk(long orderPk) {
+		return orderRepository.findById ( orderPk).orElse(null);
+	}
+	/**
      * ListOrderEntity
      * <p>
      * In This method we are sending orderEntity object as the parameter.
@@ -100,11 +100,11 @@ import com.groceryshop.demo.repository.OrderRepository;
      * @return ResponseEntity<OrderEntity>
      */
 
-    public List<OrderEntity> search(OrderEntity bean) {
+	public List<OrderEntity> search(OrderEntity bean) {
      
-        return (List<OrderEntity>) orderRepository.findByName(bean.getName());
-    }
-    /**
+		return (List<OrderEntity>) orderRepository.findByName(bean.getName());
+	}
+	/**
      * findByOrder
      * <p>
      * In This method we are sending orderEntity object as the parameter.
@@ -119,6 +119,6 @@ import com.groceryshop.demo.repository.OrderRepository;
         // TODO Auto-generated method stub
         return null;
     }
-    
-    }
+	
+	}
 
